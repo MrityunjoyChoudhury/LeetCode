@@ -135,30 +135,74 @@ public class LE_0013_RomanToInteger {
 	}
 
 	public static int roman_to_int4(String s) {
-		   HashMap<String,Integer> map = new HashMap<String,Integer>();
-	        map.put("I",1);
-	        map.put("V",5);
-	        map.put("X",10);
-	        map.put("L",50);
-	        map.put("C",100);
-	        map.put("D",500);
-	        map.put("M",1000);
-	        int prev = 0;
-	        int cur  = 0;
-	        int result = 0;
-	        for(int i = s.length()-1;i>=0;i--){
-	            cur = map.get(s.charAt(i) + "");
-	            //System.out.println(map.get(s.charAt(i) + ""));
-	            if(cur < prev){ // This is subtraction case
-	               result = result - cur;
-	            }else{
-	                result = result + cur;
-	            }
-	            prev = cur;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("I", 1);
+		map.put("V", 5);
+		map.put("X", 10);
+		map.put("L", 50);
+		map.put("C", 100);
+		map.put("D", 500);
+		map.put("M", 1000);
+		int prev = 0;
+		int cur = 0;
+		int result = 0;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			cur = map.get(s.charAt(i) + "");
+			// System.out.println(map.get(s.charAt(i) + ""));
+			if (cur < prev) { // This is subtraction case
+				result = result - cur;
+			} else {
+				result = result + cur;
+			}
+			prev = cur;
 
-	        }
-	        return result;
+		}
+		return result;
 
+	}
+
+	public static int roman_to_int5(String s) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("I", 1);
+		map.put("V", 5);
+		map.put("X", 10);
+		map.put("L", 50);
+		map.put("C", 100);
+		map.put("D", 500);
+		map.put("M", 1000);
+		int prev = 0;
+		int sum = 0;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			if (map.get(s.charAt(i) + "") < prev) {
+				sum = sum - map.get(s.charAt(i) + "");
+			} else {
+				sum = sum + map.get(s.charAt(i) + "");
+			}
+			prev = map.get(s.charAt(i) + "");
+		}
+		return sum;
+	}
+
+	public static int roman_to_int6(String s) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("I", 1);
+		map.put("V", 5);
+		map.put("X", 10);
+		map.put("L", 50);
+		map.put("C", 100);
+		map.put("D", 500);
+		map.put("M", 1000);
+		int prev = 0;
+		int sum = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if (map.get(s.charAt(i) + "") > prev) {
+				sum = sum + map.get(s.charAt(i) + "") - 2 * prev;
+			} else {
+				sum = sum + map.get(s.charAt(i) + "");
+			}
+			prev = map.get(s.charAt(i) + "");
+		}
+		return sum;
 	}
 
 	public static void main(String[] args) {
@@ -171,7 +215,7 @@ public class LE_0013_RomanToInteger {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(roman_to_int4(s));
+		System.out.println(roman_to_int6(s));
 
 	}
 

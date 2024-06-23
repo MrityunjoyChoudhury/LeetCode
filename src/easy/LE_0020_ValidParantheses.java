@@ -3,11 +3,12 @@ package easy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 
 public class LE_0020_ValidParantheses {
 
 	public static char[] stack;
-	public static int top=-1;
+	public static int top = -1;
 
 	public static boolean isEmpty() {
 		if (stack == null || stack.length == 0 || top == -1) {
@@ -73,11 +74,36 @@ public class LE_0020_ValidParantheses {
 		return true;
 	}
 
+	public static boolean isValid3(String s) {
+
+		 Stack<String> stack = new Stack<String>();
+	        for (int i = 0; i < s.length(); i++) {
+	            if (s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '[') {
+	                stack.push(s.charAt(i) + "");
+	            } else {
+	                if (
+	                    (!stack.isEmpty() && stack.peek().equals("[") && s.charAt(i) == ']') || 
+	                    (!stack.isEmpty() && stack.peek().equals("{") && s.charAt(i) == '}') || 
+	                    (!stack.isEmpty() && stack.peek().equals("(") && s.charAt(i) == ')')
+	                   ) 
+	                {
+	                    stack.pop();
+	                } else {
+	                    return false;
+	                }
+	            }
+	        }
+	        if (!stack.isEmpty()) {
+	            return false;
+	        }
+	        return true;
+	}
+
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		String s = bf.readLine();
-		if (isValid2(s)) {
+		if (isValid3(s)) {
 			System.out.println("valid");
 		} else {
 			System.out.println("Invalid");

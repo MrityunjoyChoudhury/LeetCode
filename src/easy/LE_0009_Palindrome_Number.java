@@ -56,9 +56,9 @@ public class LE_0009_Palindrome_Number {
 		display(outNum);
 
 		x = num;
-		i = numLength-1;
+		i = numLength - 1;
 		while (x > 0) {
-			if (outNum[i] != (x%10)) {
+			if (outNum[i] != (x % 10)) {
 				return false;
 			}
 			x = x / 10;
@@ -66,89 +66,110 @@ public class LE_0009_Palindrome_Number {
 		}
 		return true;
 	}
-	
+
 	public static boolean isPalinDrome3(int num) {
 		int x = num;
 		int y = num;
 		int multiplier = 1;
-		int length=0;
-		while(x>0) {
-			length = length +1;
-			
-			x=x/10;
+		int length = 0;
+		while (x > 0) {
+			length = length + 1;
+
+			x = x / 10;
 		}
 		length = length - 1;
-		while(length >0) {
-			multiplier = multiplier*10;
+		while (length > 0) {
+			multiplier = multiplier * 10;
 			length--;
 		}
-		x=num;
-		//multiplier = multiplier/10;
+		x = num;
+		// multiplier = multiplier/10;
 		System.out.println(multiplier);
-		while(x>0) {
-			if(x%10 != y/multiplier ) {
+		while (x > 0) {
+			if (x % 10 != y / multiplier) {
 				return false;
 			}
-			y = y%multiplier;
-			multiplier=multiplier/10;
-			x = x/10;
+			y = y % multiplier;
+			multiplier = multiplier / 10;
+			x = x / 10;
 		}
 		return true;
 	}
-	
+
 	public static boolean isPalinDrome4(int num) {
-		if(num== reverseNum(num)) {
+		if (num == reverseNum(num)) {
 			return true;
 		}
 		return false;
-			
+
 	}
-	
+
 	public static int reverseNum(int num) {
-		
+
 		int x = num;
-		int reverseNum=x%10;
-		x = x/10;
-		while (x>0) {
-			reverseNum=reverseNum*10 + (x%10);
-			x = x/10;
+		int reverseNum = x % 10;
+		x = x / 10;
+		while (x > 0) {
+			reverseNum = reverseNum * 10 + (x % 10);
+			x = x / 10;
 		}
-		System.out.println("reversenum: "+reverseNum);
+		System.out.println("reversenum: " + reverseNum);
 		return reverseNum;
-		
+
 	}
-	
+
 	public static boolean isPalinDrome5(int num) {
-	
-		if(num<0) {
+
+		if (num < 0) {
 			return false;
 		}
 		int x = num;
-		int multi=1;
-		
-		while(x >=10 ) {
-			multi*=10;
-			x/=10;
+		int multi = 1;
+
+		while (x >= 10) {
+			multi *= 10;
+			x /= 10;
 		}
-		//multi/=10;
-		System.out.println("Multi: "+multi);
+		// multi/=10;
+		System.out.println("Multi: " + multi);
 		x = num;
-		while(x>0){
-			if(x/multi != x%10) {
+		while (x > 0) {
+			if (x / multi != x % 10) {
 				return false;
 			}
-			x%=multi;
-			x/=10;
-			multi/=100;
+			x %= multi;
+			x /= 10;
+			multi /= 100;
 		}
 		return true;
 	}
-	
-	
+
 	public static void display(int[] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			System.out.print(arr[i] + " ");
 		}
+	}
+
+	public static boolean isPalinDrome6(int n) {
+		int x = n;
+		int m = 1;
+		while (x > 10) {
+			x = x / 10;
+			m = m * 10;
+		}
+		x = n;
+		while (x > 0) {
+			if (x % 10 != x / m) {
+				return false;
+			}
+			x = x / 10;
+			m = m / 10;
+			x = x % m;
+			m = m / 10;
+
+		}
+		return true;
+
 	}
 
 	public static void main(String[] args) {
@@ -156,8 +177,8 @@ public class LE_0009_Palindrome_Number {
 		System.out.print("enter the number: ");
 		try {
 			int num = Integer.parseInt(bf.readLine());
-			//System.out.println(reverseNum(num));
-			if (isPalinDrome5(num)) {
+			// System.out.println(reverseNum(num));
+			if (isPalinDrome6(num)) {
 				System.out.println("Palindrome");
 			} else {
 				System.out.println("Not a Palindrome");

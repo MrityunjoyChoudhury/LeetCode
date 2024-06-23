@@ -12,7 +12,7 @@ public class LE_0021_MergeTwoSortedList {
 		for (int i = 0; i < strArr.length; i++) {
 
 			addNode(list, Integer.parseInt(strArr[i]));
-			System.out.println("i: " + i +" arr val:  "+Integer.parseInt(strArr[i])+" List so far " + showList(list)+" list Val : "+list.val);
+			//System.out.println("i: " + i +" arr val:  "+Integer.parseInt(strArr[i])+" List so far " + showList(list)+" list Val : "+list.val);
 		}
 		return list;
 	}

@@ -37,16 +37,39 @@ public class LE_0027_RemoveElement {
 				a = a + b;
 				b = a - b;
 				a = a - b;
-				//System.out.println("a : "+a+" b: "+b+" num[i]: "+num[i]+" num[prevIndx]: "+num[prevIndx]);
+				// System.out.println("a : "+a+" b: "+b+" num[i]: "+num[i]+" num[prevIndx]:
+				// "+num[prevIndx]);
 				num[prevIndx] = b;
 				num[i] = a;
-				
-				//System.out.println("After SWAP: a : "+a+" b: "+b+" num[i]: "+num[i]+" num[prevIndx]: "+num[prevIndx]);
+
+				// System.out.println("After SWAP: a : "+a+" b: "+b+" num[i]: "+num[i]+"
+				// num[prevIndx]: "+num[prevIndx]);
 				prevIndx++;
 			}
 		}
 		return prevIndx;
 
+	}
+
+	public static int removeNum3(int val) {
+		
+		int p =num.length;
+		for(int i=0;i<num.length;) {
+			if(num[i]==val && p==num.length) {
+				p=i;
+				i++;
+			}else if(num[i]!= val && p!=num.length) {
+				int x = num[i];
+				num[i]=num[p];
+				num[p]=x;
+				i=p+1;
+				p=num.length;
+			}else {
+				i++;
+			}
+			
+		}
+		return p;
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -60,7 +83,7 @@ public class LE_0027_RemoveElement {
 		}
 		System.out.println("enter the element to be removed: ");
 		int val = Integer.parseInt(bf.readLine());
-		int j = removeNum2(val);
+		int j = removeNum3(val);
 		for (int i = 0; i < j; i++) {
 			System.out.print(num[i] + " ");
 		}
